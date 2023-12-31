@@ -24,6 +24,7 @@ namespace COUPON.Services
         {
            _context.Coupons.Remove(coupon);
             await _context.SaveChangesAsync();
+
             return "Coupon deleted";
         }
 
