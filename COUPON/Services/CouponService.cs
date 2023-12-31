@@ -15,6 +15,7 @@ namespace COUPON.Services
         public async Task<string> AddCoupon(Coupon coupon)
         {
             _context.Coupons.Add(coupon);
+
             await _context.SaveChangesAsync();
             return "Coupon Added";
         }
