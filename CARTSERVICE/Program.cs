@@ -1,5 +1,7 @@
 using CARTSERVICE.Data;
 using CARTSERVICE.Extensions;
+using CARTSERVICE.Services;
+using CARTSERVICE.Services.IServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -19,6 +21,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("myconnection"));
 });
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddHttpClient("Product", c => c.BaseAddress = new Uri(builder.Configuration.GetValue<string>("ServiceURL:ProductServiceURL")));
+builder.Services.AddScoped<IProduct, ProductService>();
+builder.Services.AddScoped<ICart, CartServices>();
 
 var app = builder.Build();
 
@@ -32,6 +38,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseMigrations();
+
+app.UseMigrations();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

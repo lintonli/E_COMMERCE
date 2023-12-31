@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CARTSERVICE.Models
 {
     public class CartItems
     {
-
+        [Key]
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
         public string ProductName { get; set; } = string.Empty;

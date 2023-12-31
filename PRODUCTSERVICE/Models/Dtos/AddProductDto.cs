@@ -11,6 +11,6 @@ namespace PRODUCTSERVICE.Models.Dtos
         [Required]
         public string Image { get; set; } = string.Empty;
         [Required]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
     }
 }

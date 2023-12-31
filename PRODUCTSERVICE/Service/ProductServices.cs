@@ -35,11 +35,11 @@ namespace PRODUCTSERVICE.Service
            return await _context.Products.Where(x=>x.Id==productId).FirstOrDefaultAsync();
         }
 
-        public async Task<List<AddProductDto>> GetProducts()
+        public async Task<List<Product>> GetProducts()
         {
             var prod= await _context.Products.ToListAsync();
-            var res= _mapper.Map<List<AddProductDto>>(prod);
-            return res;
+        /*    var res= _mapper.Map<List<AddProductDto>>(prod);*/
+            return prod;
         }
 
         public async Task<string> UpdateProduct(Product product)

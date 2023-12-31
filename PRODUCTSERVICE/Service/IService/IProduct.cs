@@ -5,7 +5,7 @@ namespace PRODUCTSERVICE.Service.IService
 {
     public interface IProduct
     {
-        Task<List<AddProductDto>> GetProducts();
+        Task<List<Product>> GetProducts();
         Task<string> AddProduct(Product product);
         Task<Product> GetProductById(Guid productId);
         Task<string>DeleteProduct(Product product);

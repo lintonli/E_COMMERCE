@@ -27,7 +27,7 @@ namespace PRODUCTSERVICE.Controllers
             var prod = _mapper.Map<Product>(dto);
             var res = await _productServices.AddProduct(prod);
             responseDto.Result = res;
-            return Created("", responseDto);
+            return Created($"{prod.Id}", responseDto);
         }
         [HttpGet]
         public async Task<ActionResult<ResponseDto>> GetAllProducts()
