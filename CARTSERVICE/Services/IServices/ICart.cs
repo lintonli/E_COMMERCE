@@ -6,6 +6,7 @@ namespace CARTSERVICE.Services.IServices
     public interface ICart
     {
         Task<string> CreateCart(Cart cart);
+        Task<Cart> GetCartById(Guid CartId);
         Task<CartResponseDto>GetCartUserById(Guid UserId);
         Task<string>AddToCart(CartItems cartItems);
         Task<string> DeleteCart(Guid CartId);

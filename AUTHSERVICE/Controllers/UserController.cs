@@ -1,5 +1,7 @@
 ﻿using AUTHSERVICE.Models.Dtos;
 using AUTHSERVICE.Service.IService;
+using AutoMapper;
+using Azure;
 using EcommMessageBus;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +15,13 @@ namespace AUTHSERVICE.Controllers
         private readonly IUser _userService;
         private readonly ResponseDto _responseDto;
         private readonly IConfiguration _configuration;
-        public UserController(IUser userService, IConfiguration configuration)
+        private readonly IMapper _mapper;
+        public UserController(IUser userService, IConfiguration configuration,IMapper mapper)
         {
             _userService = userService;
             _responseDto = new ResponseDto();
             _configuration = configuration;
+            _mapper = mapper;
         }
         [HttpPost]
         public async Task<ActionResult<ResponseDto>> RegisterUser(RegisterUserDto registerUserDto)
@@ -67,6 +71,23 @@ namespace AUTHSERVICE.Controllers
             _responseDto.Result = res;
             _responseDto.IsSuccess = false;
             return BadRequest(_responseDto);
+        }
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<ResponseDto>> GetUser(string Id)
+        {
+            var res = await _userService.GetUserById(Id);
+            var user = _mapper.Map<UserDto>(res);
+
+            if (res != null)
+            {
+                //this was success
+                _responseDto.Result = user;
+                return Ok(_responseDto);
+            }
+
+            _responseDto.ErrorMessage = "User Not found ";
+            _responseDto.IsSuccess = false;
+            return NotFound(_responseDto);
         }
     }
 }

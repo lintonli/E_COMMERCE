@@ -29,7 +29,7 @@ namespace CARTSERVICE.Controllers
         [Authorize]
         public async Task<ActionResult<ResponseDto>> AddProducttoCart(AddtoCartDto cartDto)
         {
-
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1];
             var userId = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
             var cart = await _cartService.GetCartUserById(new Guid(userId));
 
@@ -39,7 +39,7 @@ namespace CARTSERVICE.Controllers
                 await _cartService.CreateCart(new Cart() { UserId = new Guid(userId)});
                 cart = await _cartService.GetCartUserById(new Guid(userId));
             }
-            var product = await _productService.GetProductById(cartDto.ProductId);
+            var product = await _productService.GetProductById(cartDto.ProductId,token);
             if (product == null)
             {
                 _response.ErrorMessage = "Product not Found";
@@ -70,16 +70,17 @@ namespace CARTSERVICE.Controllers
             _response.Result = res;
             return Ok(res);
         }
-        [HttpGet]
-        public async Task<ActionResult<ResponseDto>> getProducts(Guid UserId)
+        [HttpGet("{ProductId}")]
+        [Authorize]
+        public async Task<ActionResult<ResponseDto>> getProducts(Guid ProductId)
         {
             try
             {
-
-                var res = await _productService.GetProductById(UserId);
+                var token = HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1];
+                var res = await _productService.GetProductById(ProductId,token);
                 if (res == null)
                 {
-                    _response.ErrorMessage = "User does not exist";
+                    _response.ErrorMessage = "Product does not exist";
                     return NotFound(_response);
                 }
                 _response.Result = res;
@@ -92,16 +93,30 @@ namespace CARTSERVICE.Controllers
             }
         }
         [HttpDelete("{ProductId}")]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> RemoveItem(Guid ProductId)
         {
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Split(" ")[1];
             var prod = await _cartService.DeleteProductFromCart(ProductId);
             if (prod == null)
             {
                 _response.ErrorMessage = "The product you are trying to does not exist";
                 return NotFound(_response);
             }
-            var product = await _productService.GetProductById(ProductId);
+            var product = await _productService.GetProductById(ProductId, token);
             _response.Result = $"{product.Name} has been removed from cart";
+            return Ok(_response);
+        }
+        [HttpGet("single/{CartId}")]
+        public async Task<ActionResult<ResponseDto>>Getcart(Guid CartId)
+        {
+            var crt = await _cartService.GetCartById(CartId);
+            if(crt == null)
+            {
+                _response.ErrorMessage = "Cart does not exist";
+                return NotFound(_response);
+            }
+            _response.Result = crt;
             return Ok(_response);
         }
 

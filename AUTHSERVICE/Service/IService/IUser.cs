@@ -1,4 +1,5 @@
-﻿using AUTHSERVICE.Models.Dtos;
+﻿using AUTHSERVICE.Models;
+using AUTHSERVICE.Models.Dtos;
 
 namespace AUTHSERVICE.Service.IService
 {
@@ -7,5 +8,6 @@ namespace AUTHSERVICE.Service.IService
         Task<string> RegisterUser(RegisterUserDto userDto);
         Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
         Task<bool> AssignUserRoles(string Email, string RoleName);
+        Task<ApplicationUser>GetUserById(string Id);
     }
 }

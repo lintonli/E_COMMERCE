@@ -33,6 +33,11 @@ namespace COUPON.Services
             return await _context.Coupons.ToListAsync();
         }
 
+        public async Task<Coupon> GetCoupon(string code)
+        {
+            return await _context.Coupons.Where(x=>x.CouponCode==code).FirstOrDefaultAsync();
+        }
+
         public async Task<Coupon> GetCoupons(Guid Id)
         {
             return await _context.Coupons.Where(x=>x.Id == Id).FirstOrDefaultAsync();

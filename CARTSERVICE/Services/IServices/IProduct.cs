@@ -4,6 +4,6 @@ namespace CARTSERVICE.Services.IServices
 {
     public interface IProduct
     {
-        Task<ProductDto> GetProductById(Guid ProductId);
+        Task<ProductDto> GetProductById(Guid ProductId, string token);
     }
 }

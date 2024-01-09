@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +23,7 @@ namespace PRODUCTSERVICE.Controllers
             responseDto = new ResponseDto();    
         }
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> AddProduct(AddProductDto dto)
         {
             var prod = _mapper.Map<Product>(dto);
@@ -30,6 +32,7 @@ namespace PRODUCTSERVICE.Controllers
             return Created($"{prod.Id}", responseDto);
         }
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> GetAllProducts()
         {
 
@@ -38,6 +41,7 @@ namespace PRODUCTSERVICE.Controllers
             return Ok(responseDto);
         }
         [HttpDelete("{Id}")]
+        [Authorize]
         public async Task<string> DeleteProduct(Guid Id)
         {
             var prod = await _productServices.GetProductById(Id);
@@ -49,6 +53,7 @@ namespace PRODUCTSERVICE.Controllers
             return "Product Deleted Successfully";
         }
         [HttpGet("{Id}")]
+        [Authorize]
         public async Task<ActionResult<ResponseDto>> GetProduct(Guid Id)
         {
             var post = await _productServices.GetProductById(Id);

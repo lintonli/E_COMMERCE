@@ -39,7 +39,12 @@ namespace AUTHSERVICE.Service
             return false;
         }
 
-            public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
+        public async  Task<ApplicationUser> GetUserById(string Id)
+        {
+            return await _context.applicationUsers.Where(x => x.Id == Id).FirstOrDefaultAsync();
+        }
+
+        public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
             var user = await _context.applicationUsers.Where(x => x.UserName.ToLower() == loginRequestDto.UserName.ToLower()).FirstOrDefaultAsync();
             var isValid = _userManager.CheckPasswordAsync(user, loginRequestDto.Password).GetAwaiter().GetResult();

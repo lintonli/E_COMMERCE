@@ -6,6 +6,7 @@ namespace COUPON.Services.IService
     {
         Task<List<Coupon>>GetAllCoupons();
         Task<Coupon> GetCoupons(Guid Id);
+        Task<Coupon> GetCoupon(String code);
         Task<string> AddCoupon(Coupon coupon);  
         Task<string> UpdateCoupon(Coupon Updatedcoupon);
 

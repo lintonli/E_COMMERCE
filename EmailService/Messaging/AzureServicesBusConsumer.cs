@@ -14,6 +14,7 @@ namespace EmailService.Messaging
         private readonly string _connectionString;
         private readonly string _queueName;
         private readonly ServiceBusProcessor _mailProcessor;
+        private readonly ServiceBusProcessor _orderServiceProcessor;
         private readonly MailsService _mailService;
         public AzureServicesBusConsumer(IConfiguration configuration)
         {
@@ -52,7 +53,7 @@ namespace EmailService.Messaging
             {
 
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.Append("<img src=\"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fecommerce-logo&psig=AOvVaw3TTnI3wJ8Rg145pOKrr62B&ust=1703844963522000&source=images&cd=vfe&ved=0CBIQjRxqFwoTCJCS0qTzsYMDFQAAAAAdAAAAABAE\" width=\"1000\" height=\"600\">");
+                stringBuilder.Append("<img src=\"https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg\" width=\"1000\" height=\"600\">");
                 stringBuilder.Append("<h1> Hello " + user.Name + "</h1>");
                 stringBuilder.AppendLine("<br/>Welcome to our Website");
 

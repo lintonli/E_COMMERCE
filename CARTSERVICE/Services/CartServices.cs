@@ -62,6 +62,20 @@ namespace CARTSERVICE.Services
             return "Product Does not Exist";
         }
 
+        public async Task<Cart> GetCartById(Guid CartId)
+        {
+            var cartid = await _context.Carts.Where(x => x.Id == CartId).
+                 Include(cartid => cartid.CartItems).Select(cartid => new Cart()
+                 {
+                     Id = CartId,
+                     UserId = cartid.UserId,
+                     CartItems = _mapper.Map<List<CartItems>>(cartid.CartItems.ToList()),
+                     TotalAmount = cartid.TotalAmount,
+                 }).
+                FirstOrDefaultAsync();
+            return cartid;
+        }
+
         public async Task<CartResponseDto> GetCartUserById(Guid UserId)
         {
             var cart = await _context.Carts.Where(x => x.UserId == UserId).
