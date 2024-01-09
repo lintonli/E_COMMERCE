@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "ed15c3df-915f-4ef0-8f37-c129821b2831",
+    "Name": "Nike Air Jordan 1",
+    "Description": "High-performance running shoe with advanced cushioning for comfort and agility.",
+    "Image": "https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg",
+    "Price": 120.0
+  },
+  {
+    "Id": "c02da820-84f4-4352-b3ce-f942d345ef50",
+    "Name": "Nike Air Force 1",
+    "Description": "Classic low-top sneaker with timeless style and everyday versatility.",
+    "Image": "https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg",
+    "Price": 90.0
+  },
+  {
+    "Id": "a7651617-7fd3-4b20-bc79-a2bd61ee14f7",
+    "Name": "Nike Dunk Low",
+    "Description": "Lightweight running shoe designed for revolutionary comfort and responsiveness.",
+    "Image": "https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg",
+    "Price": 65.0
+  },
+  {
+    "Id": "0f2a96f6-df65-4f96-9e7d-f5f07d4a73cf",
+    "Name": "Nike Metcon 6",
+    "Description": "Durable and breathable training shoe, perfect for heavy lifting and high-impact training.",
+    "Image": "https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg",
+    "Price": 130.0
+  },
+  {
+    "Id": "aad26e55-bb41-4bec-ad1d-ff39c3045e31",
+    "Name": "Nike Air Max 270",
+    "Description": "Iconic style with Nike's biggest heel Air unit for a super-soft ride.",
+    "Image": "https://t4.ftcdn.net/jpg/03/89/92/27/360_F_389922799_AZFyYZguDeEMoUdoROgEiJqfDPih1S12.jpg",
+    "Price": 150.0
+  }
+]

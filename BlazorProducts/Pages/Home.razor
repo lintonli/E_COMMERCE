@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject HttpClient _httpClient;
+<PageTitle>Product</PageTitle>
+<div class="col-4" >
+    <div class="align-content-lg-between" style="display:flex">
+ @foreach(var product in Products){
+            <SProduct product="product"></SProduct>
+        }
+        </div>
+        </div>
+@code{
+    public List<Product>Products{get; set;}=new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        var Prod = await _httpClient.GetFromJsonAsync<List<Product>>("sample-data/Product.json");
+        if (Prod.Any())
+        {
+            Products = Prod;
+         
+        }
+    }
+}

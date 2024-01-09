@@ -1,0 +1,37 @@
+[
+  {
+    "Id": "16133448-730d-4989-892e-f25a8c0b3e2b",
+    "Name": "John Doe",
+    "Email": "johndoe@example.com",
+    "Password": "Admin@1",
+    "PhoneNumber": "123-456-7890"
+  },
+  {
+    "Id": "e9e12253-5376-410f-beaf-87f57981deb4",
+    "Name": "Jane Smith",
+    "Email": "janesmith@example.com",
+    "Password": "Admin@1",
+    "PhoneNumber": "123-456-7891"
+  },
+  {
+    "Id": "69aee8f4-98e6-4be4-a2a7-6ef8b32d6a16",
+    "Name": "Alice Johnson",
+    "Email": "alicejohnson@example.com",
+    "Password": "Admin@1",
+    "PhoneNumber": "123-456-7892"
+  },
+  {
+    "Id": "2990980a-ec2e-4b37-934e-77b3317b28e4",
+    "Name": "Bob Brown",
+    "Email": "bobbrown@example.com",
+    "Password": "Admin@1",
+    "PhoneNumber": "123-456-7893"
+  },
+  {
+    "Id": "4910a855-1ac4-413c-969b-a4ebc5e7ddb1",
+    "Name": "Carol White",
+    "Email": "carolwhite@example.com",
+    "Password": "Admin@1",
+    "PhoneNumber": "123-456-7894"
+  }
+]
