@@ -1,0 +1,133 @@
+﻿@page "/"
+@inject HttpClient http
+@inject NavigationManager NavigationManager
+@inject IJSRuntime _jsRuntime
+
+   
+    
+    <div class="container">
+        <EditForm Model="@(IsRegister ? "Register" : "Login")" OnInvalidSubmit="HandleSubmit">
+"
+    <h1>@(IsRegister ? "Register" : "Login")</h1> 
+        @if (IsRegister)
+        {
+            
+        
+        <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" @bind-value="user.Name" id="Name" placeholder="User Name">
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="text" class="form-control" @bind-value="user.Email" id="Description" placeholder="User Email">
+    </div>
+
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <input type="number" class="form-control" @bind-value="user.PhoneNumber" id="PhoneNumber" placeholder="User Number">
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="text" class="form-control" @bind-value="user.Password" id="Password" placeholder="User Password">
+    </div>
+        <button type="button" @onclick="Register" class="mt-4 btn btn-primary">Register</button>
+        <p class="mt-2">Already a member? <button @onclick="ToggleForm" class="btn btn-link">Login</button></p>
+    }
+   
+    else{
+        <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="text" class="form-control" @bind-value="GetLoginuser.Email" id="Description" placeholder="User Email">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="text" class="form-control" @bind-value="GetLoginuser.Password" id="Password" placeholder="User Password">
+        </div>
+        <button type="button" @onclick="LoginUser" class="mt-4 btn btn-primary">Login</button>
+        <p class="mt-2">Not a member yet? <button @onclick="ToggleForm" class="btn btn-link">Register</button></p>
+    }
+
+    
+  @*   <button type="button" @onclick="ToggleForm" class="mt-2 btn btn-secondary" style="display:block">
+        @(!IsRegister ? "Register" : "Login")
+    </button> *@
+    </EditForm>
+    </div>
+
+
+
+@code {
+    public List<User> Users { get; set; } = new List<User>();
+    public User user { get; set; } = new User();
+    public loginuser GetLoginuser { get; set; } = new loginuser();
+    public bool IsRegister{ get; set;}=false;
+
+    [Parameter]
+    public EventCallback<User> RegUser { get; set; }
+    public EventCallback<User>Logged{ get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var users = await http.GetFromJsonAsync<List<User>>("sample-data/User.json");
+        if (users.Any())
+        {
+           Users = users;
+        }
+    }
+
+    public async Task Register()
+    {
+        await RegUser.InvokeAsync(user);
+    }
+    private async Task LoginUser()
+    {
+        var use = Users.Find(x => x.Email == GetLoginuser.Email );
+           
+        
+        
+            
+        
+        if (use==null)
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowMessage", "error", "Invalid Credentials");
+            Console.WriteLine("Invalid Credentials");
+            
+            return;
+            
+        }
+        var IsValidPassword = use.Password == GetLoginuser.Password;
+
+        if (!IsValidPassword)
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowMessage", "error", "Invalid Credentials");
+            Console.WriteLine("Invalid Credentials");
+         
+            return;
+        }
+        await _jsRuntime.InvokeVoidAsync("ShowMessage", "success", $"Welcome, {use.Name}");
+        Console.WriteLine($"Welcome, {use.Name}");
+        NavigationManager.NavigateTo("/dashboard");
+    }
+   @*  private void Register()
+    {
+        Console.WriteLine("Sorry, We are not taking in new members. Try again later :(");
+    } *@
+    private void ToggleForm()
+    {
+        IsRegister = !IsRegister;
+    }
+    public void HandleSubmit()
+    {
+        if (IsRegister)
+        {
+            LoginUser();
+        }
+        else
+        {
+            Register();
+        }
+    }
+
+}

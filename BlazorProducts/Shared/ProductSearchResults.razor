@@ -1,0 +1,68 @@
+﻿@page "/search/{searchTerm}"
+@inject HttpClient Http
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+</nav>
+
+@if (searchedProducts.Count == 0)
+{
+    <p> No Products found!! </p>
+}
+else
+{
+
+   <h1> Search results for : @searchTerm</h1>
+   <ProductFilter SearchTerm="@searchTerm"></ProductFilter>
+   <p> Price @Price</p>
+    <div class="row">
+        @foreach (var product in searchedProducts)
+        {
+            <SProduct product="product"></SProduct>
+        }
+    </div>
+
+}
+
+@code {
+    [Parameter]
+    public string searchTerm { get; set; }
+
+    public List<Product> searchedProducts = new List<Product>();
+
+    [Parameter, SupplyParameterFromQuery]
+    public int Price { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var prods = await Http.GetFromJsonAsync<List<Product>>("sample-data/Products.json");
+
+       
+
+        searchedProducts = prods.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower()) ||
+         x.Description.ToLower().Contains(searchTerm.ToLower())
+        ).ToList();
+
+
+    }
+
+    protected override void OnParametersSet()
+    {
+        var filters = new List<Func<Product, bool>>();
+
+        if (Price != 0)
+        {
+            filters.Add(x => x.Price <= Price);
+        }
+        if (filters.Any())
+        {
+            searchedProducts = searchedProducts.Where(product => filters.All(filter => filter(product))).ToList();
+        }
+
+
+    }
+}

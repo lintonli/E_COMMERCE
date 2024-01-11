@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORDERSERVICE", "ORDERSERVIC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CARTSERVICE", "CARTSERVICE\CARTSERVICE.csproj", "{8DB73B97-0D40-4F1A-8921-822211C9B8B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProducts", "BlazorProducts\BlazorProducts.csproj", "{471A0AB8-FF61-468B-BB84-AA3F466BF515}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorProds", "BlazorProds\BlazorProds.csproj", "{67C50715-10B6-45F0-BB8E-1D4B58448A78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{8DB73B97-0D40-4F1A-8921-822211C9B8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DB73B97-0D40-4F1A-8921-822211C9B8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DB73B97-0D40-4F1A-8921-822211C9B8B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{471A0AB8-FF61-468B-BB84-AA3F466BF515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{471A0AB8-FF61-468B-BB84-AA3F466BF515}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{471A0AB8-FF61-468B-BB84-AA3F466BF515}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{471A0AB8-FF61-468B-BB84-AA3F466BF515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C50715-10B6-45F0-BB8E-1D4B58448A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C50715-10B6-45F0-BB8E-1D4B58448A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C50715-10B6-45F0-BB8E-1D4B58448A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C50715-10B6-45F0-BB8E-1D4B58448A78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

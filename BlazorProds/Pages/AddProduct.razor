@@ -1,42 +1,33 @@
-﻿@page "/dashboard"
-@inject HttpClient _httpClient;
-<PageTitle>Product</PageTitle>
-<ProductSearch> </ProductSearch>
+﻿@page "/AddProduct"
+@using BlazorProds.Shared
+
+
+<PageTitle>Add Products</PageTitle>
+
 <div class="container1">
   <div class="Product">
-    <AddProduct @ref="addProduct" OnAddProduct="AddProduct"></AddProduct>
+    <Addproduct @ref="addProduct" OnAddProduct="Addproduct"></Addproduct>
     </div>
    <div class="Products">
        
-            @if (Products.Count == 0)
-            {
-                <p>No Products found.</p>
-            }
-            else
-            {
+          
                 @foreach (var product in Products)
                 {
                     <SProduct product="product" onDelete="Delete" onEdit="Edit"></SProduct>
                 }
-            }
+            
        
 
     </div>
  
 </div>
-@code{
-    public AddProduct addProduct{ get; set; }
-    public List<Product>Products{get; set;}=new List<Product>();
-    protected override async Task OnInitializedAsync()
-    {
-        var Prod = await _httpClient.GetFromJsonAsync<List<Product>>("sample-data/Product.json");
-        if (Prod.Any())
-        {
-            Products = Prod;
 
-        }
-    }
-    public void AddProduct(Product newProduct)
+
+
+@code {
+    public Addproduct addProduct { get; set; }
+    public List<Product> Products { get; set; } = new List<Product>();
+    public void Addproduct(Product newProduct)
     {
         var mem = Products.Find(x => x.Id == newProduct.Id);
 

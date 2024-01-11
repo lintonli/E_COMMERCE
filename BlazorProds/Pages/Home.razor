@@ -1,0 +1,40 @@
+﻿@page "/Home"
+@inject HttpClient http
+
+@* <PageTitle>Home</PageTitle> *@
+
+<h1>Hello, Welcome to EddENeddY</h1>
+<div class="list">
+    @if (products != null)
+    {
+        foreach (var product in products)
+        {
+            <div>
+                <img src="@product.Image" alt="@product.Name" />
+                <h3>@product.Name</h3>
+               
+                <p>@product.Description</p>
+                <p>Price: @product.Price</p>
+                
+            </div>
+        }
+    }
+    else
+    {
+        <p>Loading products...</p>
+    }
+
+
+</div>
+@code{
+    public List<Product> products{get; set;}= new List<Product>();
+    protected override async Task OnInitializedAsync()
+    {
+        var prod = await http.GetFromJsonAsync<List<Product>>("sample-data/Product.json");
+        if (prod.Any())
+        {
+            products = prod;
+        }
+    }
+}
+

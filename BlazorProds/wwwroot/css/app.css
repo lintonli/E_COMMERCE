@@ -1,8 +1,5 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    display: flex;
-    align-content:center;
-    justify-content: space-evenly
 }
 .container {
     display: flex;
@@ -23,107 +20,6 @@ html, body {
     padding: 10px;
     margin: 5px 0; /* Spacing for top and bottom */
 }
-.container1{
-    display:flex;
-
-}
-
-
-}
-/*.container1 {
-    max-width: 1200px;
-    
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;*/ /* Spacing between elements */
-/*}*/
-
-/* Column Styles */
-/*.col-4, .col-8 {
-    flex: 0 0 auto;
-}
-
-.col-4 {
-    width: 33.333%;*/ /* Adjust width as needed */
-    /*padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    height:50%;
-    background-color: #f9f9f9;
-   
-}
-
-.col-8 {
-    width: 66.666%;*/
-    /* Adjust width as needed */
-/*}*/
-
-/* Product List Style */
-/*.Products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;*/ /* Spacing between products */
-    /*flex: 1;
-    min-width: 250px;*/ /* Minimum width for each product */
-    /*border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    border-radius: 10px;*/ /* Rounded corners */
-    /*overflow: hidden;*/ /* Ensures the content fits in the card */
-/*}
-
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    }
-
-.card-img-top {
-    width: 100%;
-    height: auto;*/ /* Maintain aspect ratio */
-    /*object-fit: cover;*/ /* Ensures the image covers the area nicely */
-/*}
-
-.card-body {
-    padding: 15px;
-}
-
-.card-title {
-    margin-bottom: 15px;
-    font-size: 1.25rem;*/ /* Larger font size for title */
-    /*font-weight: bold;
-}
-
-.card-body span {
-    display: block;*/ /* Makes each span a block element for better spacing */
-    /*margin-bottom: 8px;
-}*/
-
-    /* Price styling */
-    /*.card-body span:last-child {
-        font-weight: bold;
-        color: #007bff;*/ /* Bootstrap primary color for emphasis */
-    /*}*/
-
-    /* Description styling */
-    /*.card-body span:first-child {
-        color: #555;*/ /* A darker shade for description */
-        /*font-size: 0.9rem;
-    }*/
-
-/* Adjusting padding */
-/*.p-8 {
-    padding: 32px;*/ /* Override Bootstrap padding */
-/*}*/
-
-/* General Styles */
-
-
-
 
 
 h1:focus {
@@ -146,7 +42,6 @@ a, .btn-link {
 
 .content {
     padding-top: 1.1rem;
-    justify-content:center
 }
 
 .valid.modified:not([type=checkbox]) {
